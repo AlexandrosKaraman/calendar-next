@@ -1,0 +1,40 @@
+.Calendar {
+  max-width: 900px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  grid-gap: 2px;
+
+  background-color: #fafafa;
+
+  &__wrapper {
+    min-width: 140px;
+    min-height: 140px;
+    background-color: #eff6ff;
+    cursor: pointer;
+  }
+  // ${props => props.isWeekend ? '#d5e1f1' : '#eff6ff'};
+  &__wrapper:hover {
+    opacity: .4;
+  }
+
+  &__wrapper:active {
+    background-color: aqua;
+  }
+
+  &__rowInCell {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__dayWrapper {
+    height: 40px;
+    width: 40px;
+
+    display: grid;
+    align-items: center;
+    justify-content: center;
+  }
+}
