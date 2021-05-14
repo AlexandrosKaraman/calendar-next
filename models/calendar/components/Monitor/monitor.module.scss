@@ -28,4 +28,13 @@
 
     padding: 12px;
   }
+
+  &__btn:hover {
+    opacity: .9;
+  }
+
+  &__btn:active {
+    background-color: rgb(218, 218, 218);
+    transform: scale(1.1);
+  }
 }
