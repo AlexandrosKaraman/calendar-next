@@ -1,11 +1,26 @@
 import styles from './Calendar.module.scss'
-import classnames from "classnames"
+import styled from 'styled-components'
+import moment from 'moment';
+
+
+
+const CurrentDay = styled('div')`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+    color: white;
+    background: #f00;
+    border-radius: 50%;
+`;
 
 export default function CalendarGrid({ startDay }) {
 
   const totalDays = 42;
   const day = startDay.clone().subtract(1, 'day');
   const daysArray = [...Array(42)].map(() => day.add(1, 'day').clone());
+  const isCurrentDay = (day) => moment().isSame(day, 'day');
 
   return (
     <div className={styles.Calendar}>
@@ -18,7 +33,9 @@ export default function CalendarGrid({ startDay }) {
             className={styles.Calendar__wrapper}>
             <div className={styles.Calendar__rowInCell}>
               <div className={styles.Calendar__dayWrapper}>
-                {dayItem.format('D')}
+                {!isCurrentDay(dayItem) && dayItem.format('D')}
+                {isCurrentDay(dayItem) && <CurrentDay>{dayItem.format('D')}</CurrentDay>}
+
               </div>
             </div>
           </div>

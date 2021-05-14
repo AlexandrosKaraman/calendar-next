@@ -1,0 +1,31 @@
+.monitor {
+  display: grid;
+
+  max-width: 900px;
+  margin: 0 auto;
+
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(7, 142px);
+  }
+
+  &__item {
+    padding: 10px;
+    text-align: center;
+    opacity: .7;
+  }
+
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    align-items: center;
+  }
+
+  &__main {
+    font-size: 32px;
+    font-weight: bold;
+
+    padding: 12px;
+  }
+}
