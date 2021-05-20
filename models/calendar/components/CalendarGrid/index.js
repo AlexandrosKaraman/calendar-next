@@ -1,7 +1,9 @@
-import styles from './Calendar.module.scss'
-import styled from 'styled-components'
+import styles from './Calendar.module.scss';
+import styled from 'styled-components';
 import moment from 'moment';
+import Modal from '../Modal';
 
+import { useState } from "react";
 
 
 const CurrentDay = styled('div')`
@@ -15,14 +17,19 @@ const CurrentDay = styled('div')`
     border-radius: 50%;
 `;
 
-export default function CalendarGrid({ startDay }) {
+export default function CalendarGrid({ startDay, today, totalDays }) {
 
-  const totalDays = 42;
   const day = startDay.clone().subtract(1, 'day');
   const daysArray = [...Array(42)].map(() => day.add(1, 'day').clone());
+
   const isCurrentDay = (day) => moment().isSame(day, 'day');
+  const isSelectedMonth = (day) => today().isSame(day, 'month');
+
+  const [modalActive, setModalActive] = useState(false)
 
   return (
+
+
     <div className={styles.Calendar}>
       {
         daysArray.map((dayItem) => (
@@ -31,6 +38,9 @@ export default function CalendarGrid({ startDay }) {
             isWeekend={dayItem.day() === 6 || dayItem.day() === 0}
 
             className={styles.Calendar__wrapper}>
+
+            <div className={styles.Calendar__plus} onClick={() => setModalActive(true)}>+</div>
+            <Modal active={modalActive} setActive={setModalActive} />
             <div className={styles.Calendar__rowInCell}>
               <div className={styles.Calendar__dayWrapper}>
                 {!isCurrentDay(dayItem) && dayItem.format('D')}
@@ -43,5 +53,7 @@ export default function CalendarGrid({ startDay }) {
         )
       }
     </div>
+
+
   )
 }
