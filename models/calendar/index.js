@@ -1,5 +1,6 @@
 import moment from "moment"
 import { useState } from "react";
+import { Provider } from "react-redux"
 
 import styles from './calendarFree.module.scss'
 
@@ -7,6 +8,7 @@ import CalendarGrid from "./components/CalendarGrid";
 import Header from "./components/Header";
 import Monitor from "./components/Monitor";
 import Modal from "./components/Modal";
+
 
 
 const totalDays = 42;
@@ -29,18 +31,23 @@ export default function Calendar() {
   const [modalActive, setModalActive] = useState(false)
 
   return (
-    <div className={styles.calendarFree}>
-      <Header />
-      <Monitor
-        today={today}
-        prevHandler={prevHandler}
-        todayHandler={todayHandler}
-        nextHandler={nextHandler}
-      />
-      <CalendarGrid startDay={startDay} today={today} totalDays={totalDays} />
+    <Provider store={store}>
+      <div className={styles.calendarFree}>
+        <Header />
+        <Monitor
+          today={today}
+          prevHandler={prevHandler}
+          todayHandler={todayHandler}
+          nextHandler={nextHandler}
+        />
+        <CalendarGrid startDay={startDay} today={today} totalDays={totalDays} />
 
-      <Modal active={modalActive} setActive={setModalActive} />
-      <button onClick={() => setModalActive(true)}>open</button>
-    </div>
+
+        <Modal active={modalActive} setActive={setModalActive} />
+
+
+        <button onClick={() => setModalActive(true)}>open</button>
+      </div>
+    </Provider>
   )
 }

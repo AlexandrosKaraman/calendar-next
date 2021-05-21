@@ -45,7 +45,6 @@ export default function CalendarGrid({ startDay, today, totalDays }) {
               <div className={styles.Calendar__dayWrapper}>
                 {!isCurrentDay(dayItem) && dayItem.format('D')}
                 {isCurrentDay(dayItem) && <CurrentDay>{dayItem.format('D')}</CurrentDay>}
-
               </div>
             </div>
           </div>
